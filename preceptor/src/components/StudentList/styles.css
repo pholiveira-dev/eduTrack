@@ -1,0 +1,286 @@
+/* =========================
+   RESET BÁSICO
+========================= */
+* {
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Ubuntu, sans-serif;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+.student-list-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e6e6e6;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+.student-list-container h1 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #222;
+  font-size: 1.6rem;
+}
+
+/* =========================
+   FILTROS
+========================= */
+.table-wrapper > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.table-wrapper input,
+.table-wrapper select {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.table-wrapper input:focus,
+.table-wrapper select:focus {
+  outline: none;
+  border-color: #6366f1;
+}
+
+/* =========================
+   TABELA
+========================= */
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+}
+
+.student-table thead {
+  background: #f3f4f6;
+}
+
+.student-table th,
+.student-table td {
+  padding: 10px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.student-table th {
+  font-weight: 600;
+  color: #374151;
+}
+
+.student-table td {
+  border-bottom: 1px solid #e5e7eb;
+  color: #374151;
+}
+
+.student-table tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+/* =========================
+   AÇÕES (BOTÕES DA TABELA)
+========================= */
+.actions {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.actions button {
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #374151; /* <<< TEXTO VISÍVEL */
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.actions button:hover {
+  background: #f3f4f6;
+}
+
+.delete-btn {
+  color: #b91c1c;
+  border-color: #fecaca;
+}
+
+.delete-btn:hover {
+  background: #fee2e2;
+}
+
+/* =========================
+   MODAL (GERAL)
+========================= */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-card h3 {
+  text-align: center;
+  margin-bottom: 14px;
+  color: #111827;
+}
+
+/* =========================
+   MODAL FORM (EDIÇÃO)
+========================= */
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-form label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #374151;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.modal-form input {
+  padding: 9px 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.modal-form input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.15);
+}
+
+.two-cols {
+  display: grid;
+  grid-template-columns: 1fr 120px;
+  gap: 10px;
+}
+
+/* =========================
+   MODAL DE TROCA
+========================= */
+.modal-card p {
+  margin: 8px 0;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.modal-card input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 0.9rem;
+  margin: 12px 0;
+  color: #374151;
+}
+
+/* =========================
+   RESULTADO DA BUSCA (SWAP)
+========================= */
+.swap-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.swap-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 0.85rem;
+  color: #374151;
+}
+
+.swap-item button {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #6366f1;
+  background: #6366f1;
+  color: #ffffff; /* <<< TEXTO VISÍVEL */
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.swap-item button:hover {
+  background: #4f46e5;
+}
+
+/* =========================
+   BOTÕES DO MODAL
+========================= */
+.modal-card button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #374151; /* <<< TEXTO VISÍVEL */
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.modal-card button + button {
+  margin-top: 8px;
+}
+
+.modal-card button:hover {
+  background: #f3f4f6;
+}
+
+/* botão primário (Confirmar / Selecionar) */
+.modal-card button:first-of-type {
+  background: #6366f1;
+  color: #ffffff;
+  border-color: #6366f1;
+}
+
+.modal-card button:first-of-type:hover {
+  background: #4f46e5;
+}
