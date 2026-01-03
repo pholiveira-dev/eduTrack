@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { StudentFormFields } from "./StudentFormFields";
+import { v4 as uuidv4 } from "uuid";
 import "./styles.css";
 
 export function StudentForm({ handleAddStudent }) {
   const [student, setStudent] = useState({
-    id: Date.now(),
     name: "",
     rgm: "",
     turn: "",
@@ -12,7 +12,7 @@ export function StudentForm({ handleAddStudent }) {
   });
   function handleSubmit(e) {
     e.preventDefault();
-    handleAddStudent({ ...student, id: Date.now() });
+    handleAddStudent({ ...student, id: uuidv4() });
     setStudent({
       name: "",
       rgm: "",
