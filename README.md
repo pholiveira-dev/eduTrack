@@ -1,8 +1,10 @@
 # 🎓 EduTrack
 
-**EduTrack** é uma aplicação web para **gestão acadêmica de alunos**, focada na organização por **grupos, turnos e controle de movimentações**, com visão futura de **dashboard e relatórios**.
+**EduTrack** é uma aplicação web para **gestão acadêmica de alunos**, focada na organização por **grupos**, **turnos** e no **controle de movimentações**, com visão de crescimento para **dashboards** e **relatórios gerenciais**.
 
-O projeto nasceu de uma necessidade real no contexto de **estágios supervisionados**, buscando substituir controles manuais por uma solução digital simples, eficiente e escalável.
+O projeto foi desenvolvido a partir de uma **necessidade real no contexto de estágios supervisionados de uma instituição privada do Distrito Federal**, com o objetivo de substituir controles manuais por uma solução digital **simples, funcional e evolutiva.**
+
+Trata-se de um **MVP funcional**, utilizado como **prova de conceito**, permitindo validar regras de negócio, usabilidade e fluxos antes da evolução para uma arquitetura com backend dedicado.
 
 ---
 
@@ -14,19 +16,35 @@ O projeto nasceu de uma necessidade real no contexto de **estágios supervisiona
 - Filtros dinâmicos (nome, RGM, grupo, turno)  
 - Troca de alunos entre grupos  
 - Persistência de dados via **LocalStorage**  
-- Interface pensada para uso em desktop e mobile  
+- Interface responsiva, pensada para uso em **desktop**
 
 ---
 
 ## 🧠 Motivação do Projeto
 
-Durante a rotina de acompanhamento acadêmico, especialmente em estágios, o controle de alunos costuma ser feito por planilhas ou anotações manuais.
+Durante a rotina de acompanhamento acadêmico, especialmente em estágios, o controle de alunos costuma ser feito por planilhas ou anotações manuais, o que pode gerar retrabalho, inconsistências e dificuldade de reorganização.
 
 O **EduTrack** surge para:
 - Reduzir erros manuais
 - Facilitar reorganizações de grupos
 - Centralizar informações
-- Servir como base para futuras automações
+- Servir como base para **futuras automações e integrações.**
+
+---
+
+## 🧩 Decisão Técnica: LocalStorage
+
+Neste estágio, a aplicação utiliza **LocalStorage** como camada de persistência, com o objetivo de:
+
+- Simular um banco de dados real
+
+- Facilitar testes e validação com usuários finais
+
+- **Permitir demonstração do sistema sem dependência de infraestrutura**
+
+- Manter a lógica de negócio preparada para futura migração para backend
+
+**Essa abordagem permite validar o produto de forma rápida e segura, mantendo o código organizado para evolução futura.**
 
 ---
 
@@ -56,8 +74,6 @@ src/
 ## 🚀 Próximas Implementações (Roadmap)
 
 - Dashboard geral  
-- Relatórios por grupo e turno  
-- Busca avançada  
 - Autenticação de usuários  
 - Persistência com backend (Node / API REST)  
 - Exportação de dados (Excel / PDF)  
