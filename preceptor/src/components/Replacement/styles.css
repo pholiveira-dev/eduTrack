@@ -185,6 +185,7 @@
 .replacement-form h2 {
   font-size: 1.2rem;
   color: var(--text-main);
+  text-align: center;
 }
 
 /* Campos */
