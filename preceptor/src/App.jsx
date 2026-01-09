@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { StudentForm } from "./components/StudentForm";
 import { StudentList } from "./components/StudentList";
+import { MainTemplate } from "./templates/MainTemplate";
 
 export function App() {
   const [students, setStudents] = useState(() => {
     const save = localStorage.getItem("student");
     return save ? JSON.parse(save) : [];
   });
+
+  const [currentView, setCurrentView] = useState("");
 
   useEffect(() => {
     localStorage.setItem("student", JSON.stringify(students));
@@ -16,10 +19,17 @@ export function App() {
     setStudents((prev) => [...prev, student]);
   }
 
+  function renderContent() {
+    if (currentView === "students") {
+      return <StudentList setStudents={setStudents} students={students} />;
+    }
+
+    if (currentView === "form") {
+      return <StudentForm handleAddStudent={handleAddStudent} />;
+    }
+  }
+
   return (
-    <>
-      <StudentForm handleAddStudent={handleAddStudent} />
-      <StudentList setStudents={setStudents} students={students} />
-    </>
+    <MainTemplate onNavigate={setCurrentView}>{renderContent()}</MainTemplate>
   );
 }

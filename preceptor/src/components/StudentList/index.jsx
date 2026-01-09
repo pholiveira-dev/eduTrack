@@ -1,4 +1,8 @@
 import { useState } from "react";
+import { StudentFilters } from "./StudentFilters";
+// import { StudentTable } from "./StudentTable";
+// import { EditStudentModel } from "./StudentTable";
+// import { SwapStudentModal } from "./SwapStudentModal";
 import "./styles.css";
 
 export function StudentList({ students, setStudents }) {
@@ -94,7 +98,18 @@ export function StudentList({ students, setStudents }) {
     <section className="student-list-container">
       <h1>Lista de Alunos</h1>
 
-      {/* ===== MODAL DE TROCA ===== */}
+      <StudentFilters
+        nameFilter={nameFilter}
+        setNameFilter={setNameFilter}
+        rgmFilter={rgmFilter}
+        setRgmFilter={setRgmFilter}
+        groupFilter={groupFilter}
+        setGroupFilter={setGroupFilter}
+        turnFilter={turnFilter}
+        setTurnFilter={setTurnFilter}
+        groups={groups}
+        turns={turns}
+      />
       {swapStep && (
         <div className="modal-overlay">
           <div className="modal-card">
@@ -169,47 +184,6 @@ export function StudentList({ students, setStudents }) {
       )}
 
       <div className="table-wrapper">
-        <div>
-          Buscar:{" "}
-          <input
-            type="text"
-            placeholder="Nome completo"
-            value={nameFilter}
-            onChange={(e) => setNameFilter(e.target.value.toUpperCase())}
-          />
-          RGM:{" "}
-          <input
-            type="text"
-            placeholder="Ex.: 15377377"
-            value={rgmFilter}
-            onChange={(e) => setRgmFilter(e.target.value)}
-          />
-          Grupos:{" "}
-          <select
-            value={groupFilter}
-            onChange={(e) => setGroupFilter(e.target.value)}
-          >
-            <option value="">Todos os grupos</option>
-            {groups.map((g) => (
-              <option key={g} value={g}>
-                {g}
-              </option>
-            ))}
-          </select>
-          Turno:{" "}
-          <select
-            value={turnFilter}
-            onChange={(e) => setTurnFilter(e.target.value)}
-          >
-            <option value="">Todos os turnos</option>
-            {turns.map((t) => (
-              <option key={t} value={t}>
-                {t}
-              </option>
-            ))}
-          </select>
-        </div>
-
         <table className="student-table">
           <thead>
             <tr>
@@ -221,7 +195,6 @@ export function StudentList({ students, setStudents }) {
               <th>Ações</th>
             </tr>
           </thead>
-
           <tbody>
             {filteredStudent.map((s, index) => (
               <tr key={s.id}>

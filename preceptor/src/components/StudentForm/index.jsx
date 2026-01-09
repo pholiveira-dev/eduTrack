@@ -22,9 +22,8 @@ export function StudentForm({ handleAddStudent }) {
   }
 
   return (
-    <>
+    <div className="page-wrapper">
       <div className="form-page">
-        <h1>Cadastrar Aluno</h1>
         <form onSubmit={handleSubmit}>
           <fieldset>
             <legend>Dados do aluno</legend>
@@ -33,6 +32,6 @@ export function StudentForm({ handleAddStudent }) {
           </fieldset>
         </form>
       </div>
-    </>
+    </div>
   );
 }

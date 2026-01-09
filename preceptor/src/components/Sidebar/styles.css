@@ -1,0 +1,42 @@
+/* =========================
+   SIDEBAR
+========================= */
+.sidebar {
+  width: 240px;
+  background: #2563eb;
+  color: #ffffff;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  font-size: 1.4rem;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.menu-item {
+  background: transparent;
+  border: none;
+  color: #e5e7eb;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.menu-item:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.menu-item.active {
+  font-weight: 600;
+}
