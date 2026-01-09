@@ -4,11 +4,9 @@ export function ReplacementModal({
   selectedStudentData,
   cancel,
   viewVacancies,
-  availability,
 }) {
   const [selectDate, setSelectDate] = useState("");
 
-  const dayAvailability = selectDate ? availability(selectDate) : null;
   return (
     <section className="modal-overlay">
       <div className="modal-container">
@@ -83,21 +81,6 @@ export function ReplacementModal({
           {
             <div>
               <h4>Vagas disponíveis</h4>
-              {dayAvailability && (
-                <div>
-                  <h4>Vagas disponíveis</h4>
-
-                  {Object.entries(dayAvailability).map(([turn, data]) => {
-                    const available = data.capacity - data.occupied;
-
-                    return (
-                      <p key={turn}>
-                        {turn}: {available} vagas
-                      </p>
-                    );
-                  })}
-                </div>
-              )}
             </div>
           }
 
