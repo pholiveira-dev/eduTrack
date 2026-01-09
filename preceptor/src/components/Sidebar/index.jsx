@@ -9,7 +9,7 @@ export function Sidebar({ onNavigate }) {
           className="menu-item active"
           onClick={() => onNavigate("dashboard")}
         >
-          Dashboard
+          Como usar
         </button>
         <button className="menu-item" onClick={() => onNavigate("form")}>
           Cadastrar Aluno
@@ -18,7 +18,9 @@ export function Sidebar({ onNavigate }) {
           Alunos
         </button>
 
-        <button className="menu-item">Cadastrar Reposição</button>
+        <button className="menu-item" onClick={() => onNavigate("replacement")}>
+          Cadastrar Reposição
+        </button>
       </nav>
     </aside>
   );

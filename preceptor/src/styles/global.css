@@ -1,0 +1,42 @@
+/* global.css */
+:root {
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+
+  --text-main: #111827;
+  --text-muted: #6b7280;
+
+  --border: #e5e7eb;
+  --bg-soft: #f9fafb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  background: #f3f4f6;
+  color: var(--text-main);
+}
+
+/* Tipografia base */
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Botões base */
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Inputs base */
+input,
+select {
+  font-family: inherit;
+}

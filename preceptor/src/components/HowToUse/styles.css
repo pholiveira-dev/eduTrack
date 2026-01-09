@@ -1,0 +1,111 @@
+/* =========================
+   HOW TO USE - CONTAINER
+========================= */
+.howto-container {
+  width: 100%;
+  max-width: 900px;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 32px 36px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.06);
+
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+/* =========================
+   HEADER
+========================= */
+.howto-header h1 {
+  font-size: 1.9rem;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.howto-header p {
+  font-size: 0.95rem;
+  color: #6b7280;
+  max-width: 650px;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+.howto-section {
+  padding-left: 20px;
+  border-left: 4px solid #6366f1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.howto-section h2 {
+  font-size: 1.15rem;
+  color: #111827;
+}
+
+.howto-section p {
+  font-size: 0.95rem;
+  color: #374151;
+  line-height: 1.6;
+}
+
+/* =========================
+   LISTAS
+========================= */
+.howto-section ul {
+  padding-left: 20px;
+  margin: 8px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.howto-section li {
+  font-size: 0.9rem;
+  color: #374151;
+  position: relative;
+  padding-left: 12px;
+}
+
+.howto-section li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #6366f1;
+  font-weight: bold;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.howto-footer {
+  padding-top: 16px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.howto-footer p {
+  font-size: 0.85rem;
+  color: #6b7280;
+  text-align: center;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+@media (max-width: 640px) {
+  .howto-container {
+    padding: 24px 20px;
+  }
+
+  .howto-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .howto-section {
+    padding-left: 14px;
+  }
+}
