@@ -10,5 +10,5 @@ export default defineConfig({
       },
     }),
   ],
-  base: "/eduTrack",
+  base: "/eduTrack/",
 });
