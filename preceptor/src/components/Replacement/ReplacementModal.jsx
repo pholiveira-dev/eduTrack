@@ -3,14 +3,30 @@ import { useState } from "react";
 export function ReplacementModal({
   selectedStudentData,
   cancel,
-  viewVacancies,
+  availability,
+  handleAddReplacement,
+  addReplacement,
 }) {
   const [selectDate, setSelectDate] = useState("");
+  const [selectTurn, setSelectTurn] = useState("");
+
+  const availabilityDate =
+    availability?.filter((d) => d.date === selectDate) || [];
 
   return (
     <section className="modal-overlay">
       <div className="modal-container">
-        <form className="replacement-form">
+        <form
+          className="replacement-form"
+          onSubmit={(e) => {
+            e.preventDefault();
+
+            if (!selectDate || !selectTurn) {
+              alert("Selecione a data e o período da reposição");
+              return;
+            }
+          }}
+        >
           {selectedStudentData && (
             <section className="student-summary" key={selectedStudentData.id}>
               <div className="student-main">{selectedStudentData.name}</div>
@@ -72,15 +88,43 @@ export function ReplacementModal({
               value={selectDate}
               required
             />
-            <button type="button" onClick={() => viewVacancies(selectDate)}>
-              Selecionar
-            </button>
-            {}
           </label>
 
           {
-            <div>
-              <h4>Vagas disponíveis</h4>
+            <div className="availability-section">
+              <h4 className="availability-title">Vagas disponíveis</h4>
+
+              {!selectDate && (
+                <p className="availability-hint">
+                  Por favor, selecione uma data
+                </p>
+              )}
+
+              <ul className="availability-list">
+                {availabilityDate.map((s) => (
+                  <li key={s.id} className="availability-item">
+                    <button
+                      type="button"
+                      className={`availability-period ${
+                        selectTurn === s.period ? "active" : ""
+                      }`}
+                      value={s.period}
+                      onClick={(e) => setSelectTurn(e.target.value)}
+                    >
+                      {s.period}
+                    </button>
+                    <span className="availability-slots">
+                      {s.capacity - s.occupied} vagas
+                    </span>
+                  </li>
+                ))}
+              </ul>
+
+              {selectDate && availabilityDate.length === 0 && (
+                <p className="availability-empty">
+                  Nenhuma vaga cadastrada para {selectDate}
+                </p>
+              )}
             </div>
           }
 
@@ -88,7 +132,12 @@ export function ReplacementModal({
             <button type="button" onClick={cancel}>
               Cancelar
             </button>
-            <button type="submit">Confirmar</button>
+            <button
+              type="submit"
+              onClick={() => handleAddReplacement(selectDate, selectTurn)}
+            >
+              Confirmar
+            </button>
           </div>
         </form>
       </div>

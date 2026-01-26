@@ -8,10 +8,21 @@
 
   --border: #e5e7eb;
   --bg-soft: #f9fafb;
+
+  /* Espaçamentos dinâmicos */
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
 }
 
 * {
   box-sizing: border-box;
+}
+
+html {
+  /* Facilita cálculos: 1rem vira 16px (padrão), 
+     mas ajusta se o usuário mudar a escala do sistema */
+  font-size: 100%;
 }
 
 body {
@@ -19,24 +30,49 @@ body {
   font-family: Inter, system-ui, sans-serif;
   background: #f3f4f6;
   color: var(--text-main);
+  line-height: 1.5; /* Melhora a leitura em telas pequenas */
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Tipografia base */
-h1,
-h2,
+/* Tipografia Fluida */
+h1 {
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+}
+h2 {
+  font-size: clamp(1.25rem, 4vw, 2rem);
+}
 h3 {
-  margin: 0;
-  font-weight: 600;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
 }
 
-/* Botões base */
+/* Inputs e Selects Responsivos */
+input,
+select,
 button {
   font-family: inherit;
-  cursor: pointer;
+  font-size: 1rem; /* Evita zoom automático no iOS ao focar input */
+  width: 100%; /* Por padrão, ocupam a largura do container pai */
+  max-width: 100%;
 }
 
-/* Inputs base */
-input,
-select {
-  font-family: inherit;
+/* Utilitário de Container para limitar a largura em telas grandes */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+/* Media Queries para ajustes finos */
+
+/* Dispositivos pequenos (Celulares) */
+@media (max-width: 480px) {
+  :root {
+    --spacing-lg: 1.25rem; /* Reduz margens grandes no mobile */
+  }
+}
+
+/* Dispositivos médios (Tablets) */
+@media (max-width: 768px) {
+  /* Ajustes para formulários ou grids específicos podem ir aqui */
 }

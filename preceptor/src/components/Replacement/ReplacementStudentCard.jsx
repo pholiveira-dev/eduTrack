@@ -13,6 +13,7 @@ export function ReplacementStudentCard({ s, setSelectStudent, selectStudent }) {
           className="select-student-button"
           onClick={() => setSelectStudent(s.id)}
           aria-pressed={selectStudent === s.id}
+          type="button"
         >
           Selecionar
         </button>

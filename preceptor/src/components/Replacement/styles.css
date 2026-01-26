@@ -1,5 +1,5 @@
 /* ======================================================
-   BASE
+   DESIGN TOKENS
 ====================================================== */
 :root {
   --primary: #6366f1;
@@ -16,15 +16,17 @@
 .replacement-container {
   width: 100%;
   max-width: 900px;
+  margin: 0 auto;
+
   background: #ffffff;
   border-radius: 18px;
-  padding: 32px;
+  padding: clamp(16px, 4vw, 32px);
   border: 1px solid var(--border);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
 
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: clamp(20px, 4vw, 32px);
 }
 
 /* ======================================================
@@ -32,10 +34,10 @@
 ====================================================== */
 .replacement-search {
   width: 100%;
-  padding: 14px 18px;
+  padding: clamp(12px, 3vw, 16px);
   border-radius: 12px;
   border: 1px solid var(--border);
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
 }
 
 .replacement-search:focus {
@@ -57,12 +59,12 @@
   background: var(--bg-soft);
   border: 1px solid var(--border);
   border-radius: 14px;
-  padding: 18px;
+  padding: clamp(14px, 3vw, 18px);
 
   display: grid;
   grid-template-columns: 1fr auto;
-  align-items: center;
   gap: 16px;
+  align-items: center;
 }
 
 /* Dados do aluno */
@@ -72,27 +74,27 @@
   padding: 0;
 
   display: grid;
-  grid-template-columns: repeat(2, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 8px 20px;
 
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 2.5vw, 0.9rem);
   color: var(--text-muted);
 }
 
 .student-name {
-  grid-column: span 2;
+  grid-column: 1 / -1;
   font-weight: 600;
   color: var(--text-main);
 }
 
 /* Botão selecionar */
 .select-student-button {
-  padding: 10px 18px;
+  padding: clamp(10px, 3vw, 14px) clamp(16px, 4vw, 22px);
   border-radius: 12px;
   border: 1px solid var(--primary);
   background: var(--primary);
   color: #ffffff;
-  font-size: 0.85rem;
+  font-size: clamp(0.75rem, 2.5vw, 0.85rem);
   cursor: pointer;
 }
 
@@ -118,23 +120,26 @@
 .modal-container {
   width: 100%;
   max-width: 680px;
+  max-height: 90vh;
+
   background: #ffffff;
   border-radius: 20px;
-  padding: 36px;
+  padding: clamp(18px, 4vw, 36px);
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
 
+  overflow-y: auto;
   animation: modalEnter 0.25s ease-out;
 }
 
 /* ======================================================
-   RESUMO DO ALUNO (FOCO DE UX)
+   RESUMO DO ALUNO
 ====================================================== */
 .student-summary {
   background: linear-gradient(135deg, #eef2ff, #f8fafc);
   border: 1px solid #c7d2fe;
   border-radius: 18px;
-  padding: 22px;
-  margin-bottom: 36px;
+  padding: clamp(16px, 4vw, 22px);
+  margin-bottom: clamp(20px, 5vw, 36px);
 
   display: flex;
   flex-direction: column;
@@ -143,7 +148,7 @@
 
 /* Nome */
 .student-main {
-  font-size: 1.15rem;
+  font-size: clamp(1rem, 3vw, 1.25rem);
   font-weight: 700;
   color: var(--text-main);
   text-align: center;
@@ -152,25 +157,18 @@
 /* Metadados */
 .student-meta {
   display: flex;
-  justify-content: center; /* 👈 ISSO que faltava */
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 12px;
 }
 
 .student-meta span {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background: #ffffff;
   padding: 8px 14px;
   border-radius: 999px;
   border: 1px solid var(--border);
-  font-size: 0.85rem;
+  font-size: clamp(0.75rem, 2.5vw, 0.85rem);
   color: var(--text-muted);
-}
-
-.student-meta strong {
-  margin-right: 6px;
 }
 
 /* ======================================================
@@ -179,30 +177,29 @@
 .replacement-form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: clamp(14px, 3vw, 18px);
 }
 
 .replacement-form h2 {
-  font-size: 1.2rem;
+  font-size: clamp(1.05rem, 3vw, 1.3rem);
   color: var(--text-main);
   text-align: center;
 }
 
-/* Campos */
 .replacement-form label {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  font-size: 0.85rem;
+  font-size: clamp(0.75rem, 2.5vw, 0.85rem);
   color: var(--text-muted);
 }
 
 .replacement-form select,
 .replacement-form input {
-  padding: 12px 14px;
+  padding: clamp(10px, 3vw, 14px);
   border-radius: 10px;
   border: 1px solid var(--border);
-  font-size: 0.9rem;
+  font-size: clamp(0.85rem, 2.5vw, 0.9rem);
 }
 
 .replacement-form select:focus,
@@ -213,36 +210,80 @@
 }
 
 /* ======================================================
+   DISPONIBILIDADE DE VAGAS
+====================================================== */
+.availability-section {
+  padding: clamp(14px, 4vw, 18px);
+  border-radius: 14px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.availability-title {
+  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+  font-weight: 600;
+  text-align: center;
+}
+
+.availability-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.availability-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: clamp(10px, 3vw, 14px);
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+
+  font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+}
+
+.availability-period {
+  font-weight: 500;
+  color: var(--text-main);
+  text-transform: capitalize;
+}
+
+.availability-slots {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* ======================================================
    AÇÕES
 ====================================================== */
 .modal-actions {
   display: flex;
-  justify-content: flex-end;
   gap: 12px;
   margin-top: 20px;
 }
 
 .modal-actions button {
-  padding: 12px 20px;
+  flex: 1;
+  padding: clamp(10px, 3vw, 14px);
   border-radius: 12px;
-  font-size: 0.85rem;
+  font-size: clamp(0.8rem, 2.5vw, 0.85rem);
   cursor: pointer;
   border: 1px solid var(--border);
 }
 
-.modal-actions button:first-child {
-  background: #f3f4f6;
-  color: var(--text-main);
-}
-
 .modal-actions button:last-child {
   background: var(--primary);
-  border-color: var(--primary);
   color: #ffffff;
-}
-
-.modal-actions button:last-child:hover {
-  background: var(--primary-hover);
 }
 
 /* ======================================================
@@ -260,18 +301,14 @@
 }
 
 /* ======================================================
-   RESPONSIVO
+   MOBILE EXTRA
 ====================================================== */
-@media (max-width: 640px) {
-  .modal-container {
-    padding: 24px;
-  }
-
-  .student-meta {
-    flex-direction: column;
-  }
-
-  .student-info {
+@media (max-width: 480px) {
+  .replacement-card {
     grid-template-columns: 1fr;
+  }
+
+  .modal-actions {
+    flex-direction: column;
   }
 }
