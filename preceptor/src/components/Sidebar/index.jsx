@@ -19,7 +19,11 @@ export function Sidebar({ onNavigate }) {
         </button>
 
         <button className="menu-item" onClick={() => onNavigate("replacement")}>
-          Cadastrar Reposição
+          Agendar
+        </button>
+
+        <button className="menu-item" onClick={() => onNavigate("")}>
+          Reposição
         </button>
       </nav>
     </aside>

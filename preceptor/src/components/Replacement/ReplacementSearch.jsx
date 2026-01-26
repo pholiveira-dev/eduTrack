@@ -11,7 +11,7 @@ export function ReplacementSearch({ filterStudent, setFilterStudent }) {
           aria-label="Buscar aluno"
         />
       </header>
-      <h2>AGENDAR </h2>
+      <h2>SELECIONE O ESTUDANTE </h2>
     </div>
   );
 }
