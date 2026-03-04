@@ -5,10 +5,13 @@ export function TextInput({
   onChange,
   placeholder,
   required = false,
+  disabled = false,
 }) {
   return (
     <div className="form-group">
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={id}>
+        {label} {required ? "*" : ""}
+      </label>
       <input
         id={id}
         type="text"
@@ -16,6 +19,7 @@ export function TextInput({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         required={required}
+        disabled={disabled}
       />
     </div>
   );

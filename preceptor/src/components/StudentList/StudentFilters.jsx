@@ -1,8 +1,6 @@
 export function StudentFilters({
-  nameFilter,
-  setNameFilter,
-  rgmFilter,
-  setRgmFilter,
+  quickSearch,
+  setQuickSearch,
   groupFilter,
   setGroupFilter,
   turnFilter,
@@ -11,18 +9,12 @@ export function StudentFilters({
   turns,
 }) {
   return (
-    <div>
+    <div className="filters-bar">
       <input
         type="text"
-        placeholder="Nome completo do aluno"
-        value={nameFilter}
-        onChange={(e) => setNameFilter(e.target.value.toUpperCase())}
-      />{" "}
-      <input
-        type="text"
-        placeholder="RGM - Ex.: 15377377"
-        value={rgmFilter}
-        onChange={(e) => setRgmFilter(e.target.value)}
+        placeholder="Busca rápida (Nome ou RGM)"
+        value={quickSearch}
+        onChange={(e) => setQuickSearch(e.target.value)}
       />{" "}
       <select
         value={groupFilter}

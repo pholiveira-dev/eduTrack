@@ -1,11 +1,7 @@
-body {
-  padding: 0;
-  border: 0;
-  margin: 0;
-}
-
-.app-layout {
+.app-container {
   display: flex;
   min-height: 100vh;
-  background: #f3f4f6;
+  width: 100%;
+
+  background: #f8fafc;
 }

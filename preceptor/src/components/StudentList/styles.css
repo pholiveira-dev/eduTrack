@@ -1,167 +1,368 @@
-/* =========================
-   RESET BÁSICO
-========================= */
-* {
-  box-sizing: border-box;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Ubuntu, sans-serif;
+/* ======================================================
+   TOKENS
+====================================================== */
+:root {
+  --bg: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+
+  --border: #e5e7eb;
+  --soft: #f1f5f9;
+  --soft2: #f8fafc;
+
+  --primary: #6366f1;
+  --primary-2: #4f46e5;
+
+  --danger: #b91c1c;
+  --danger-bg: #fee2e2;
+  --danger-br: #fecaca;
+
+  --shadow-soft: 0 10px 24px rgba(2, 6, 23, 0.06);
+  --shadow-modal: 0 30px 70px rgba(2, 6, 23, 0.35);
+
+  --radius: 18px;
+  --radius-sm: 14px;
 }
 
-/* =========================
+/* ======================================================
    CONTAINER
-========================= */
+====================================================== */
 .student-list-container {
-  max-width: 1100px;
-  margin: 40px auto;
-  padding: 24px;
-  background: #ffffff;
-  border-radius: 14px;
-  border: 1px solid #e6e6e6;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  max-width: 1120px;
+  margin: 24px auto;
+  padding: 20px;
+
+  background: var(--bg);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
 }
 
 .student-list-container h1 {
-  margin-bottom: 20px;
-  text-align: center;
-  color: #222;
-  font-size: 1.6rem;
+  margin: 0 0 14px;
+  color: var(--text);
+  font-size: 1.45rem;
+  font-weight: 950;
+  letter-spacing: -0.2px;
 }
 
-/* =========================
-   FILTROS
-========================= */
-.table-wrapper > div {
+/* ======================================================
+   FILTROS (StudentFilters)
+   (mantém compatível com seu JSX atual)
+====================================================== */
+.student-list-container > h1 + div {
+  display: grid;
+  grid-template-columns: 1.35fr 0.85fr 0.85fr;
+  gap: 12px;
+
+  padding: 14px;
+  border: 1px solid var(--border);
+  background: linear-gradient(135deg, #eef2ff, var(--soft2));
+  border-radius: var(--radius);
+}
+
+.student-list-container > h1 + div input,
+.student-list-container > h1 + div select {
+  height: 46px;
+  padding: 0 14px;
+
+  border-radius: var(--radius-sm);
+  border: 1px solid #d1d5db;
+  background: #fff;
+
+  font-size: 0.95rem;
+  color: var(--text);
+
+  transition: 0.18s ease;
+}
+
+.student-list-container > h1 + div input::placeholder {
+  color: #94a3b8;
+}
+
+.student-list-container > h1 + div input:focus,
+.student-list-container > h1 + div select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.14);
+}
+
+/* ======================================================
+   DETAILS CARD (selecionado)
+====================================================== */
+.student-details-card {
+  margin-top: 12px;
+  padding: 14px;
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: 0 8px 18px rgba(2, 6, 23, 0.04);
+}
+
+.student-details-card strong {
+  display: block;
+  color: var(--text);
+  margin-bottom: 8px;
+  font-weight: 950;
+}
+
+.student-details-card > div {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* ======================================================
+   PAGINAÇÃO / STATUS
+   (mantém compatível com seu JSX via inline style)
+====================================================== */
+.student-list-container > div[style*="alignItems"] {
+  margin-top: 12px;
+  padding: 12px 14px;
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--soft2);
+
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 16px;
+  gap: 10px !important;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.table-wrapper input,
-.table-wrapper select {
-  padding: 8px 10px;
-  border-radius: 8px;
+.student-list-container > div[style*="alignItems"] span {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.student-list-container > div[style*="alignItems"] strong {
+  color: var(--text);
+  font-weight: 950;
+}
+
+.student-list-container > div[style*="alignItems"] button,
+.student-list-container > div[style*="alignItems"] select {
+  height: 40px;
+  border-radius: 14px;
   border: 1px solid #d1d5db;
-  font-size: 0.9rem;
-  color: #374151;
+  background: #fff;
+  color: var(--text);
+  font-weight: 900;
+  font-size: 0.92rem;
 }
 
-.table-wrapper input:focus,
-.table-wrapper select:focus {
-  outline: none;
-  border-color: #6366f1;
+.student-list-container > div[style*="alignItems"] button {
+  padding: 0 12px;
+  cursor: pointer;
+  transition: 0.18s ease;
 }
 
-/* =========================
-   TABELA
-========================= */
+.student-list-container > div[style*="alignItems"] button:hover {
+  background: var(--soft);
+  border-color: #cbd5e1;
+}
+
+.student-list-container > div[style*="alignItems"] button:active {
+  transform: scale(0.98);
+}
+
+.student-list-container > div[style*="alignItems"] button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.student-list-container > div[style*="alignItems"] select {
+  padding: 0 10px;
+}
+
+/* ======================================================
+   TABELA / WRAPPER
+====================================================== */
+.table-wrapper {
+  margin-top: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #fff;
+
+  /* scroll horizontal se precisar */
+  overflow-x: auto;
+}
+
+/* Tabela com espaçamento melhor */
 .student-table {
   width: 100%;
-  border-collapse: collapse;
-  background: #ffffff;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 820px;
 }
 
-.student-table thead {
-  background: #f3f4f6;
+/* header sticky com “glass” */
+.student-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+
+  background: rgba(241, 245, 249, 0.92);
+  backdrop-filter: blur(6px);
+
+  border-bottom: 1px solid var(--border);
+
+  color: #334155;
+  font-weight: 950;
+  font-size: 0.88rem;
+  text-align: left;
+
+  padding: 12px 12px;
+  white-space: nowrap;
 }
 
-.student-table th,
-.student-table td {
-  padding: 10px;
+.student-table thead th:first-child {
+  width: 56px;
   text-align: center;
-  font-size: 0.9rem;
 }
 
-.student-table th {
-  font-weight: 600;
-  color: #374151;
+/* linhas */
+.student-table tbody td {
+  border-bottom: 1px solid var(--border);
+  color: #334155;
+  font-size: 0.92rem;
+  padding: 12px 12px;
+  vertical-align: middle;
 }
 
-.student-table td {
-  border-bottom: 1px solid #e5e7eb;
-  color: #374151;
+/* índice */
+.student-table tbody td:first-child {
+  text-align: center;
+  color: var(--muted);
+  font-weight: 900;
 }
 
-.student-table tbody tr:nth-child(even) {
-  background: #fafafa;
+/* hover e seleção */
+.student-table tbody tr {
+  transition: 0.15s ease;
 }
 
-/* =========================
-   AÇÕES (BOTÕES DA TABELA)
-========================= */
+.student-table tbody tr:hover {
+  background: var(--soft2);
+}
+
+/* selecionada (você seta inline style com #f5f5f5) */
+.student-table tbody tr[style*="background: #f5f5f5"] {
+  background: rgba(99, 102, 241, 0.1) !important;
+}
+
+/* coluna ações */
+.student-table th:last-child,
+.student-table td:last-child {
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ======================================================
+   AÇÕES
+====================================================== */
 .actions {
   display: flex;
-  gap: 6px;
-  justify-content: center;
+  gap: 10px;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .actions button {
-  padding: 6px 10px;
-  font-size: 0.8rem;
-  border-radius: 6px;
+  height: 36px;
+  padding: 0 12px;
+
+  font-size: 0.86rem;
+  border-radius: 12px;
+
   border: 1px solid #d1d5db;
-  background: #ffffff;
-  color: #374151; /* <<< TEXTO VISÍVEL */
+  background: #fff;
+
+  color: var(--text);
   cursor: pointer;
-  transition: 0.2s;
+
+  font-weight: 950;
+  transition: 0.18s ease;
 }
 
 .actions button:hover {
-  background: #f3f4f6;
+  background: var(--soft);
+  border-color: #cbd5e1;
 }
 
+.actions button:active {
+  transform: scale(0.98);
+}
+
+/* excluir */
 .delete-btn {
-  color: #b91c1c;
-  border-color: #fecaca;
+  color: var(--danger) !important;
+  border-color: var(--danger-br) !important;
+  background: #fff;
 }
 
 .delete-btn:hover {
-  background: #fee2e2;
+  background: var(--danger-bg) !important;
 }
 
-/* =========================
-   MODAL (GERAL)
-========================= */
+/* ======================================================
+   MODAL
+====================================================== */
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35);
+
+  background: rgba(2, 6, 23, 0.65);
+  backdrop-filter: blur(8px);
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  padding: 18px;
   z-index: 999;
 }
 
 .modal-card {
   width: 100%;
-  max-width: 420px;
-  background: #ffffff;
-  border-radius: 14px;
-  padding: 22px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  animation: fadeIn 0.2s ease-out;
+  max-width: 560px;
+
+  background: #fff;
+  border-radius: 20px;
+
+  padding: 18px;
+  box-shadow: var(--shadow-modal);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  animation: modalIn 0.2s ease-out;
 }
 
-@keyframes fadeIn {
+@keyframes modalIn {
   from {
     opacity: 0;
-    transform: translateY(6px);
+    transform: translateY(8px) scale(0.98);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
 .modal-card h3 {
-  text-align: center;
-  margin-bottom: 14px;
-  color: #111827;
+  margin: 0 0 12px;
+  color: var(--text);
+  font-size: 1.05rem;
+  font-weight: 1000;
+  letter-spacing: -0.2px;
 }
 
-/* =========================
-   MODAL FORM (EDIÇÃO)
-========================= */
+/* ======================================================
+   MODAL FORM
+====================================================== */
 .modal-form {
   display: flex;
   flex-direction: column;
@@ -169,118 +370,110 @@
 }
 
 .modal-form label {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #374151;
+  font-size: 0.82rem;
+  font-weight: 900;
+  color: var(--muted);
+
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .modal-form input {
-  padding: 9px 10px;
-  border-radius: 8px;
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 14px;
   border: 1px solid #d1d5db;
-  font-size: 0.9rem;
-  color: #374151;
+
+  font-size: 0.95rem;
+  color: var(--text);
+
+  transition: 0.18s ease;
 }
 
 .modal-form input:focus {
   outline: none;
-  border-color: #6366f1;
-  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.15);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.14);
 }
 
 .two-cols {
   display: grid;
-  grid-template-columns: 1fr 120px;
+  grid-template-columns: 1fr 140px;
+  gap: 12px;
+}
+
+/* ======================================================
+   MODAL ACTIONS
+====================================================== */
+.modal-actions {
+  display: flex;
   gap: 10px;
+  margin-top: 6px;
 }
 
-/* =========================
-   MODAL DE TROCA
-========================= */
-.modal-card p {
-  margin: 8px 0;
-  font-size: 0.9rem;
-  color: #374151;
-}
-
-.modal-card input {
+.modal-actions button {
   width: 100%;
-  padding: 10px;
-  border-radius: 8px;
+  height: 44px;
+  border-radius: 14px;
+
   border: 1px solid #d1d5db;
-  font-size: 0.9rem;
-  margin: 12px 0;
-  color: #374151;
-}
+  background: #fff;
 
-/* =========================
-   RESULTADO DA BUSCA (SWAP)
-========================= */
-.swap-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 14px;
-}
-
-.swap-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 10px;
-  font-size: 0.85rem;
-  color: #374151;
-}
-
-.swap-item button {
-  padding: 6px 10px;
-  border-radius: 6px;
-  border: 1px solid #6366f1;
-  background: #6366f1;
-  color: #ffffff; /* <<< TEXTO VISÍVEL */
-  font-size: 0.75rem;
+  color: var(--text);
+  font-weight: 1000;
   cursor: pointer;
+
+  transition: 0.18s ease;
 }
 
-.swap-item button:hover {
-  background: #4f46e5;
+.modal-actions button:hover {
+  background: var(--soft);
+  border-color: #cbd5e1;
 }
 
-/* =========================
-   BOTÕES DO MODAL
-========================= */
-.modal-card button {
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #d1d5db;
-  background: #ffffff;
-  color: #374151; /* <<< TEXTO VISÍVEL */
-  cursor: pointer;
-  font-size: 0.9rem;
+.modal-actions button:active {
+  transform: scale(0.98);
 }
 
-.modal-card button + button {
-  margin-top: 8px;
+/* fallback pras suas classes */
+.btn.ghost.success {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
 }
 
-.modal-card button:hover {
-  background: #f3f4f6;
+.btn.ghost.success:hover {
+  background: var(--primary-2);
 }
 
-/* botão primário (Confirmar / Selecionar) */
-.modal-card button:first-of-type {
-  background: #6366f1;
-  color: #ffffff;
-  border-color: #6366f1;
+.btn.ghost.neutral {
+  background: #fff;
+  color: var(--text);
 }
 
-.modal-card button:first-of-type:hover {
-  background: #4f46e5;
+/* ======================================================
+   RESPONSIVO
+====================================================== */
+@media (max-width: 860px) {
+  .student-list-container {
+    margin: 18px auto;
+    padding: 16px;
+  }
+
+  .student-list-container > h1 + div {
+    grid-template-columns: 1fr;
+  }
+
+  .student-table {
+    min-width: 760px;
+  }
+
+  .two-cols {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+  }
 }

@@ -1,105 +1,152 @@
 /* ======================================================
-   DESIGN TOKENS
+   TOKENS
 ====================================================== */
 :root {
   --primary: #6366f1;
   --primary-hover: #4f46e5;
-  --text-main: #111827;
-  --text-muted: #6b7280;
+
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+
   --border: #e5e7eb;
-  --bg-soft: #f9fafb;
+
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --soft: #f1f5f9;
+
+  --shadow-soft: 0 10px 24px rgba(2, 6, 23, 0.06);
+  --shadow-modal: 0 30px 70px rgba(2, 6, 23, 0.35);
+
+  --radius: 18px;
+  --radius-sm: 14px;
 }
 
 /* ======================================================
-   CONTAINER PRINCIPAL
+   PAGE CONTAINER
 ====================================================== */
 .replacement-container {
   width: 100%;
-  max-width: 900px;
+  max-width: 980px;
   margin: 0 auto;
-
-  background: #ffffff;
-  border-radius: 18px;
-  padding: clamp(16px, 4vw, 32px);
-  border: 1px solid var(--border);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
-
   display: flex;
   flex-direction: column;
-  gap: clamp(20px, 4vw, 32px);
+  gap: 18px;
 }
 
 /* ======================================================
-   BUSCA
+   HEADER + SEARCH
 ====================================================== */
+.replacement-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.replacement-container h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  color: var(--text-main);
+}
+
 .replacement-search {
   width: 100%;
-  padding: clamp(12px, 3vw, 16px);
-  border-radius: 12px;
+  height: 46px;
+  padding: 0 14px;
+  border-radius: var(--radius-sm);
   border: 1px solid var(--border);
-  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+  background: #fff;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  transition: 0.18s ease;
 }
 
 .replacement-search:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.16);
 }
 
 /* ======================================================
-   LISTA DE ALUNOS
+   LIST
 ====================================================== */
 .replacement-list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
+/* ======================================================
+   STUDENT CARD
+====================================================== */
 .replacement-card {
-  background: var(--bg-soft);
+  background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: clamp(14px, 3vw, 18px);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  padding: 16px 18px;
 
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 16px;
+  gap: 14px;
   align-items: center;
+
+  transition: 0.18s ease;
 }
 
-/* Dados do aluno */
+.replacement-card:hover {
+  transform: translateY(-1px);
+  border-color: #d1d5db;
+}
+
 .student-info {
   list-style: none;
   margin: 0;
   padding: 0;
 
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 8px 20px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 6px 16px;
 
-  font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+  font-size: 0.88rem;
   color: var(--text-muted);
 }
 
 .student-name {
   grid-column: 1 / -1;
-  font-weight: 600;
+  font-weight: 900;
   color: var(--text-main);
+  letter-spacing: -0.2px;
 }
 
-/* Botão selecionar */
+.card-actions {
+  display: flex;
+  align-items: center;
+}
+
 .select-student-button {
-  padding: clamp(10px, 3vw, 14px) clamp(16px, 4vw, 22px);
-  border-radius: 12px;
+  height: 42px;
+  padding: 0 16px;
+  border-radius: 14px;
+
   border: 1px solid var(--primary);
   background: var(--primary);
-  color: #ffffff;
-  font-size: clamp(0.75rem, 2.5vw, 0.85rem);
+  color: #fff;
+
+  font-weight: 800;
+  font-size: 0.86rem;
+
   cursor: pointer;
+  transition: 0.18s ease;
 }
 
 .select-student-button:hover {
   background: var(--primary-hover);
+}
+
+.select-student-button:active {
+  transform: scale(0.98);
 }
 
 /* ======================================================
@@ -108,191 +155,350 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(17, 24, 39, 0.6);
-  backdrop-filter: blur(6px);
-
+  background: rgba(2, 6, 23, 0.65);
+  backdrop-filter: blur(8px);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   z-index: 1000;
+  padding: 18px;
 }
 
 .modal-container {
   width: 100%;
-  max-width: 680px;
-  max-height: 90vh;
-
-  background: #ffffff;
-  border-radius: 20px;
-  padding: clamp(18px, 4vw, 36px);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
-
+  max-width: 720px;
+  max-height: 88vh;
   overflow-y: auto;
-  animation: modalEnter 0.25s ease-out;
+
+  background: #fff;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  padding: 28px;
+  box-shadow: var(--shadow-modal);
+
+  animation: modalEnter 0.22s ease-out;
 }
 
 /* ======================================================
-   RESUMO DO ALUNO
+   STUDENT SUMMARY
 ====================================================== */
 .student-summary {
   background: linear-gradient(135deg, #eef2ff, #f8fafc);
   border: 1px solid #c7d2fe;
   border-radius: 18px;
-  padding: clamp(16px, 4vw, 22px);
-  margin-bottom: clamp(20px, 5vw, 36px);
-
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
-/* Nome */
 .student-main {
-  font-size: clamp(1rem, 3vw, 1.25rem);
-  font-weight: 700;
-  color: var(--text-main);
   text-align: center;
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--text-main);
 }
 
-/* Metadados */
 .student-meta {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .student-meta span {
-  background: #ffffff;
-  padding: 8px 14px;
-  border-radius: 999px;
+  background: #fff;
   border: 1px solid var(--border);
-  font-size: clamp(0.75rem, 2.5vw, 0.85rem);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
   color: var(--text-muted);
 }
 
 /* ======================================================
-   FORMULÁRIO
+   FORM
 ====================================================== */
 .replacement-form {
   display: flex;
   flex-direction: column;
-  gap: clamp(14px, 3vw, 18px);
+  gap: 14px;
 }
 
 .replacement-form h2 {
-  font-size: clamp(1.05rem, 3vw, 1.3rem);
-  color: var(--text-main);
   text-align: center;
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: var(--text-main);
+  margin-top: 6px;
 }
 
 .replacement-form label {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  font-size: clamp(0.75rem, 2.5vw, 0.85rem);
+  font-size: 0.82rem;
+  font-weight: 700;
   color: var(--text-muted);
 }
 
 .replacement-form select,
 .replacement-form input {
-  padding: clamp(10px, 3vw, 14px);
-  border-radius: 10px;
+  height: 46px;
+  padding: 0 14px;
+  border-radius: 14px;
   border: 1px solid var(--border);
-  font-size: clamp(0.85rem, 2.5vw, 0.9rem);
+  background: #fff;
+  color: var(--text-main);
+  transition: 0.18s ease;
 }
 
 .replacement-form select:focus,
 .replacement-form input:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.15);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.14);
 }
 
 /* ======================================================
-   DISPONIBILIDADE DE VAGAS
+   AVAILABILITY
 ====================================================== */
 .availability-section {
-  padding: clamp(14px, 4vw, 18px);
-  border-radius: 14px;
-  background: var(--bg-soft);
+  background: var(--soft);
   border: 1px solid var(--border);
-
+  border-radius: 18px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .availability-title {
-  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
-  font-weight: 600;
+  margin: 0;
   text-align: center;
+  font-size: 0.92rem;
+  font-weight: 900;
+  color: var(--text-main);
+}
+
+.availability-hint,
+.availability-empty {
+  margin: 0;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
 }
 
 .availability-list {
   list-style: none;
-  padding: 0;
   margin: 0;
-
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
 .availability-item {
+  width: 100%;
+  height: 46px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  padding: clamp(10px, 3vw, 14px);
-  border-radius: 12px;
-  background: #ffffff;
+  border-radius: 14px;
   border: 1px solid var(--border);
+  background: #fff;
 
-  font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+  padding: 0 14px;
+
+  cursor: pointer;
+  transition: 0.18s ease;
+}
+
+.availability-item:hover {
+  border-color: #cbd5e1;
+}
+
+.availability-item.active {
+  border-color: var(--primary);
+  background: #eef2ff;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.14);
+}
+
+.availability-item:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
 }
 
 .availability-period {
-  font-weight: 500;
+  font-weight: 900;
   color: var(--text-main);
   text-transform: capitalize;
 }
 
 .availability-slots {
-  font-weight: 600;
+  font-weight: 900;
   color: var(--primary);
 }
 
 /* ======================================================
-   AÇÕES
+   ACTIONS
 ====================================================== */
 .modal-actions {
   display: flex;
   gap: 12px;
-  margin-top: 20px;
+  margin-top: 6px;
 }
 
 .modal-actions button {
   flex: 1;
-  padding: clamp(10px, 3vw, 14px);
-  border-radius: 12px;
-  font-size: clamp(0.8rem, 2.5vw, 0.85rem);
-  cursor: pointer;
+  height: 46px;
+  border-radius: 14px;
   border: 1px solid var(--border);
+  background: #fff;
+  font-weight: 900;
+  cursor: pointer;
+  transition: 0.18s ease;
+}
+
+.modal-actions button:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
 }
 
 .modal-actions button:last-child {
   background: var(--primary);
-  color: #ffffff;
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.modal-actions button:last-child:hover {
+  background: var(--primary-hover);
 }
 
 /* ======================================================
-   ANIMAÇÃO
+   CONFIRMATION (fica bonito no último print)
+====================================================== */
+.confirmation {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.confirmation-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto;
+
+  background: #ecfdf5;
+  border: 1px solid #bbf7d0;
+  font-size: 1.25rem;
+}
+
+.confirmation-title {
+  margin: 0;
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 1000;
+  color: var(--text-main);
+}
+
+.confirmation-subtitle {
+  margin: 0;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+.confirmation-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 14px;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.confirmation-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.confirmation-label {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 900;
+}
+
+.confirmation-value {
+  color: var(--text-main);
+  font-size: 0.92rem;
+  font-weight: 1000;
+  text-align: right;
+}
+
+.confirmation-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 4px 0;
+}
+
+/* ======================================================
+   TOP ALERT
+====================================================== */
+.top-alert {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(760px, calc(100% - 24px));
+  border-radius: 14px;
+  padding: 12px 14px;
+
+  color: #fff;
+  text-align: center;
+  font-weight: 900;
+
+  z-index: 9999;
+  box-shadow: 0 18px 40px rgba(2, 6, 23, 0.35);
+
+  animation: slideDown 0.25s ease-out;
+}
+
+.top-alert.success {
+  background: #16a34a;
+}
+
+.top-alert.error {
+  background: #dc2626;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* ======================================================
+   ANIMATIONS
 ====================================================== */
 @keyframes modalEnter {
   from {
     opacity: 0;
-    transform: scale(0.95);
+    transform: scale(0.96);
   }
   to {
     opacity: 1;
@@ -301,9 +507,9 @@
 }
 
 /* ======================================================
-   MOBILE EXTRA
+   MOBILE
 ====================================================== */
-@media (max-width: 480px) {
+@media (max-width: 520px) {
   .replacement-card {
     grid-template-columns: 1fr;
   }
@@ -311,50 +517,4 @@
   .modal-actions {
     flex-direction: column;
   }
-}
-
-.top-alert {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: #16a34a;
-  color: white;
-  padding: 12px;
-  text-align: center;
-  font-weight: 500;
-  z-index: 9999;
-  animation: slideDown 0.3s ease-out;
-}
-
-@keyframes slideDown {
-  from {
-    transform: translateY(-100%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-
-.top-alert {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  color: white;
-  padding: 12px;
-  text-align: center;
-  font-weight: 500;
-  z-index: 9999;
-  animation: slideDown 0.3s ease-out;
-}
-
-/* SUCESSO */
-.top-alert.success {
-  background: #16a34a; /* verde */
-}
-
-/* ERRO */
-.top-alert.error {
-  background: #dc2626; /* vermelho */
 }

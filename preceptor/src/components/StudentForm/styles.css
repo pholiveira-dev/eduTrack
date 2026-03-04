@@ -1,137 +1,240 @@
-/* =========================
-   PÁGINA
-========================= */
-.form-page {
-  background: transparent;
-  padding: 0;
-  min-height: auto;
-  display: flex;
-  justify-content: center;
+/* ======================================================
+   TOKENS (compatível com o resto do app)
+====================================================== */
+:root {
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+
+  --border: #e5e7eb;
+  --soft: #f1f5f9;
+  --card: #ffffff;
+
+  --shadow-soft: 0 10px 24px rgba(2, 6, 23, 0.06);
+  --radius: 18px;
+  --radius-sm: 14px;
 }
 
-.form-page h2 {
-  margin-bottom: 24px;
-  color: #374151;
-  margin-bottom: 12px;
-}
-
+/* ======================================================
+   WRAPPER / LAYOUT
+====================================================== */
 .page-wrapper {
   width: 100%;
-  max-width: 900px;
+  max-width: 1020px;
+  margin: 0 auto;
+  padding: 18px;
 }
 
-/* =========================
-   FORMULÁRIO
-========================= */
+.form-page {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+/* o <form> vira só container */
 form {
   width: 100%;
-  max-width: 720px; /* <<< AGORA É DESKTOP */
-  margin: 0 auto;
-  background: #ffffff;
-  padding: 36px 40px;
-  border-radius: 16px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-}
-
-/* =========================
-   FIELDSET / LEGEND
-========================= */
-fieldset {
-  border: none;
+  max-width: none;
+  margin: 0;
   padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
 }
 
-legend {
-  font-size: 1.6rem;
-  font-weight: 600;
-  margin-bottom: 12px;
-  color: #111827;
-}
-
-/* =========================
-   GRID DO FORM
-========================= */
+/* ======================================================
+   CARDS (FIELDSET)
+====================================================== */
 fieldset {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* <<< DUAS COLUNAS */
-  column-gap: 28px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  padding: 18px 18px 16px;
+  box-shadow: var(--shadow-soft);
 }
 
-/* Nome ocupa linha inteira */
-.form-group:first-of-type {
-  grid-column: 1 / -1;
+/* título */
+legend {
+  font-size: 1.05rem;
+  font-weight: 950;
+  letter-spacing: -0.2px;
+  color: var(--text-main);
+  padding: 0 8px;
 }
 
-/* =========================
+/* card menor (Verificar) */
+.form-page > fieldset legend {
+  text-align: center;
+}
+
+/* ======================================================
    CAMPOS
-========================= */
+====================================================== */
 .form-group {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  margin-bottom: 22px;
+  margin-bottom: 14px;
 }
 
 label {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #374151;
+  font-size: 0.82rem;
+  font-weight: 850;
+  color: var(--text-muted);
 }
 
-/* =========================
+/* ======================================================
    INPUTS / SELECT
-========================= */
+====================================================== */
 input,
 select {
   height: 46px;
   padding: 0 14px;
-  border-radius: 10px;
-  border: 1px solid #d1d5db;
+
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
   background: #ffffff;
-  font-size: 1rem;
-  color: #374151;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  font-size: 0.95rem;
+  color: var(--text-main);
+
+  transition: 0.18s ease;
 }
 
 input::placeholder {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 input:focus,
 select:focus {
   outline: none;
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.14);
 }
 
-/* =========================
-   BOTÃO
-========================= */
-button[type="submit"] {
-  grid-column: 1 / -1; /* <<< ocupa tudo */
-  height: 52px;
-  margin-top: 16px;
-  border-radius: 12px;
-  border: 1px solid #6366f1;
-  background: #6366f1;
-  color: #ffffff;
-  font-size: 1.05rem;
-  font-weight: 600;
+/* Disabled: limpo e legível */
+input:disabled,
+select:disabled {
+  background: var(--soft);
+  border-color: var(--border);
+  color: #64748b;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+/* ======================================================
+   GRID (somente fieldset do form: Dados do aluno)
+====================================================== */
+form fieldset {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 18px;
+}
+
+/* Nome em linha inteira */
+form fieldset .form-group:first-of-type {
+  grid-column: 1 / -1;
+}
+
+/* Mensagem ocupa tudo e fica com cara de “alert” */
+form fieldset p {
+  grid-column: 1 / -1;
+  margin: 0 0 8px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+/* ======================================================
+   BOTÕES (base)
+====================================================== */
+button {
+  height: 44px;
+  padding: 0 14px;
+
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+
+  color: var(--text-main);
+  font-size: 0.92rem;
+  font-weight: 900;
+
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.1s ease;
-  margin-top: 24px;
-  font-size: 1.1rem;
+  transition: 0.18s ease;
+  white-space: nowrap;
 }
 
-button[type="submit"]:hover {
-  background: #4f46e5;
+button:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
 }
 
-button[type="submit"]:active {
+button:active {
   transform: scale(0.98);
 }
 
-h1 {
-  text-align: center;
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ======================================================
+   BOTÃO PRINCIPAL (Cadastrar)
+====================================================== */
+button[type="submit"] {
+  grid-column: 1 / -1;
+  height: 50px;
+  margin-top: 6px;
+
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  color: #ffffff;
+
+  font-size: 0.96rem;
+  font-weight: 950;
+  letter-spacing: -0.1px;
+
+  box-shadow: 0 14px 28px rgba(99, 102, 241, 0.22);
+}
+
+button[type="submit"]:hover {
+  background: var(--primary-hover);
+}
+
+/* ======================================================
+   CARD "VERIFICAR ALUNO" (melhora layout dos botões inline)
+   (você usou inline style no JSX — mantemos esse hook)
+====================================================== */
+.form-page > fieldset > div[style*="display: flex"] {
+  gap: 10px !important;
+}
+
+.form-page > fieldset > div[style*="display: flex"] > button {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ======================================================
+   RESPONSIVO
+====================================================== */
+@media (max-width: 860px) {
+  .form-page {
+    grid-template-columns: 1fr;
+  }
+
+  form fieldset {
+    grid-template-columns: 1fr;
+  }
+
+  button {
+    width: 100%;
+  }
 }

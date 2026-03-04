@@ -1,0 +1,390 @@
+:root {
+  --primary: #6366f1;
+  --primary-2: #4f46e5;
+
+  --text: #0f172a;
+  --muted: #64748b;
+
+  --border: #e5e7eb;
+  --soft: #f1f5f9;
+  --soft2: #f8fafc;
+
+  --shadow-soft: 0 10px 24px rgba(2, 6, 23, 0.06);
+
+  --radius: 18px;
+  --radius-sm: 14px;
+}
+
+.dash {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.dash-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dash-title {
+  margin: 0;
+  font-size: 1.55rem;
+  font-weight: 1000;
+  letter-spacing: -0.3px;
+  color: var(--text);
+}
+
+.dash-subtitle {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.dash-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.dash-pill {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: #fff;
+  color: var(--text);
+  font-weight: 900;
+  font-size: 0.82rem;
+}
+
+.dash-pill.soft {
+  background: var(--soft2);
+  color: var(--muted);
+}
+
+/* KPIs */
+.dash-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.kpi {
+  padding: 14px;
+}
+
+.kpi-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.kpi-label {
+  color: var(--muted);
+  font-weight: 900;
+  font-size: 0.85rem;
+}
+
+.kpi i {
+  width: 18px;
+  height: 18px;
+  color: rgba(99, 102, 241, 0.9);
+}
+
+.kpi-value {
+  margin-top: 10px;
+  font-size: 1.9rem;
+  font-weight: 1100;
+  color: var(--text);
+  letter-spacing: -0.5px;
+}
+
+.kpi-foot {
+  margin-top: 6px;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.kpi.warn .kpi-value {
+  color: #b45309;
+}
+
+.kpi.warn i {
+  color: #f59e0b;
+}
+
+/* Panels grid */
+.dash-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.panel {
+  padding: 14px;
+}
+
+.panel.wide {
+  grid-column: 1 / -1;
+}
+
+.panel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.panel-head h2 {
+  margin: 0;
+  color: var(--text);
+  font-weight: 1000;
+  font-size: 1.05rem;
+}
+
+.panel-sub {
+  color: var(--muted);
+  font-weight: 800;
+  font-size: 0.82rem;
+}
+
+/* Period rows */
+.period-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.period-row {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--soft2);
+  padding: 12px;
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.period-right {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.period-metric {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #fff;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.period-metric .muted {
+  color: var(--muted);
+  font-weight: 900;
+  font-size: 0.78rem;
+}
+
+.period-metric strong {
+  color: var(--text);
+  font-weight: 1100;
+}
+
+/* badges */
+.period-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 7px 12px;
+  font-size: 0.82rem;
+  font-weight: 1000;
+  text-transform: capitalize;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
+}
+
+.period-badge.matutino {
+  border-color: rgba(34, 197, 94, 0.35);
+  background: rgba(34, 197, 94, 0.1);
+}
+
+.period-badge.vespertino {
+  border-color: rgba(59, 130, 246, 0.35);
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.period-badge.noturno {
+  border-color: rgba(168, 85, 247, 0.35);
+  background: rgba(168, 85, 247, 0.1);
+}
+
+/* Alerts */
+.alert-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.alert-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+  background: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.alert-main {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.alert-date {
+  font-weight: 1000;
+  color: var(--text);
+}
+
+.alert-slots {
+  font-weight: 1100;
+  color: #b45309;
+}
+
+.alert-slots.zero {
+  color: #b91c1c;
+}
+
+/* Empty state */
+.empty {
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  background: var(--soft2);
+  padding: 14px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.empty i {
+  width: 18px;
+  height: 18px;
+  color: rgba(99, 102, 241, 0.9);
+}
+
+.empty strong {
+  color: var(--text);
+  font-weight: 1100;
+}
+
+.empty p {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+/* Days */
+.days {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.day-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.day-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.day-date {
+  font-weight: 1100;
+  color: var(--text);
+}
+
+.day-total {
+  color: var(--muted);
+  font-weight: 900;
+  font-size: 0.82rem;
+}
+
+.day-periods {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.day-period {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.day-remaining {
+  font-weight: 1100;
+  color: var(--text);
+}
+
+.day-remaining.zero {
+  color: #b91c1c;
+}
+
+/* Responsive */
+@media (max-width: 1060px) {
+  .dash-kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dash-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .panel.wide {
+    grid-column: auto;
+  }
+
+  .days {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .period-row {
+    grid-template-columns: 1fr;
+  }
+
+  .period-right {
+    grid-template-columns: 1fr;
+  }
+}
