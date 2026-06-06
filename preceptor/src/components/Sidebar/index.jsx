@@ -1,7 +1,7 @@
 import "./styles.css";
 
 const items = [
-  { key: "dashboard", label: "Como usar", icon: "home" },
+  { key: "dashboard", label: "Dashboard", icon: "home" },
   { key: "form", label: "Cadastrar aluno", icon: "user-plus" },
   { key: "students", label: "Alunos", icon: "users" },
   { key: "replacement", label: "Agendar", icon: "calendar" },
